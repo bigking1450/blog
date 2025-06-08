@@ -29,13 +29,32 @@ def post_detail(request, pk):
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
+
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            form.save_m2m()
+            # form.save_m2m()
             return redirect('home-page')
     else:
         form = PostForm()
+
+    context = {'form': form}
+    return render(request, 'blog/create-post.html', context)
+
+
+def update_post(request, pk):
+    post = Post.objects.get(id=pk)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            # form.save_m2m()
+            return redirect('home-page')
+    else:
+        form = PostForm(instance=post)
 
     context = {'form': form}
     return render(request, 'blog/create-post.html', context)

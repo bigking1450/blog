@@ -7,7 +7,7 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'excerpt', 'content', 'cover_image',
-                  'intro_images', 'body_images', 'tags']
+                  'post_images', 'tags']
 
         def __init__(self, *args, **kwargs):
             super(PostForm, self).__init__(*args, **kwargs)
@@ -18,9 +18,7 @@ class PostForm(ModelForm):
                 {'class': 'form-control'})
             self.fields['cover_image'].widget.attrs.update(
                 {'class': 'form-control-file'})
-            self.fields['intro_images'].widget.attrs.update(
-                {'class': 'form-control'})
-            self.fields['body_images'].widget.attrs.update(
+            self.fields['post_images'].widget.attrs.update(
                 {'class': 'form-control'})
             # self.fields['tags'].widget.attrs.update({'multiple': 'multiple'})
             self.fields['tags'].widget.attrs.update(

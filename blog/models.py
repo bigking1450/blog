@@ -18,11 +18,9 @@ class Post(models.Model):
     excerpt = models.CharField(max_length=255)
     content = models.TextField()
     cover_image = models.ImageField(upload_to='cover_images')
-    intro_images = ArrayField(models.CharField(
+    post_images = ArrayField(models.CharField(
         max_length=255), blank=True, default=list)
-    body_images = ArrayField(models.CharField(
-        max_length=255), blank=True, default=list)
-    tags = models.ManyToManyField(Tag, blank=True, related_name='posts')
+    tags = models.ManyToManyField(Tag, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
