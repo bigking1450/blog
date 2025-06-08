@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # user-defined apps
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -74,8 +77,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blog',
+        'USER': 'king',
+        'PASSWORD': 'kamba',
+        'HOST': 'localhost',
+        'PORT': '5433',
+        'OPTIONS': {
+            'options': '-c search_path=blog,public'
+        }
     }
 }
 
