@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}.blog{% endblock %}
+
+{% block content %}
+    <div class="bg-white py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto text-center max-w-2xl lg:mx-0">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Welcome to &#123;.blog&#125;</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">Explore our latest articles and insights.</p>
+            </div>
+
+            <div class="mt-16 max-w-lg sm:mx-auto">
+                {% for post in posts %}
+                    <div class="mb-6 p-6 bg-gray-50 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold text-gray-900">{{ post.title }}</h3>
+                        <p class="mt-2 text-gray-700">{{ post.excerpt }}</p>
+                        <a href="{{ post.get_absolute_url }}" class="mt-4 inline-block text-blue-600 hover:text-blue-800">Read more</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
